@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Benedict Cumberbatch Movies</string>
+    <string name="movie_list_title">Benedict Cumberbatch Movies</string>
+    <string name="movie_detail_title">Movie Details</string>
+    <string name="loading_movies">Loading movies…</string>
+    <string name="error_loading_movies">Failed to load movies</string>
+    <string name="retry">Retry</string>
+    <string name="no_movies_found">No movies found</string>
+    <string name="overview">Overview</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="no_overview_available">No overview available</string>
+</resources>
