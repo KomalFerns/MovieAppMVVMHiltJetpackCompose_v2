@@ -1,9 +1,11 @@
 package com.telushealth.movies.di
 
 import android.content.Context
+import com.telushealth.movies.BuildConfig
 import com.telushealth.movies.data.movie.MovieRemoteDataSource
 import com.telushealth.movies.data.movie.MovieRepository
 import com.telushealth.movies.data.movie.TmdbApiService
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +28,7 @@ object MovieModule {
     
     // NOTE: In production, this should be stored securely (e.g., BuildConfig, local.properties, or secrets)
     // For the challenge, users need to add their TMDB API key to local.properties as: tmdb.api.key=YOUR_API_KEY
-    private const val API_KEY_PLACEHOLDER = "cffb8ee3c9d5b92aed87d70e5a07fb09"
+  //  private const val API_KEY_PLACEHOLDER = "cffb8ee3c9d5b92aed87d70e5a07fb09"
 
     @Provides
     @Singleton
@@ -51,6 +53,13 @@ object MovieModule {
 
     @Provides
     @Singleton
+    @TmdbApiKey
+    fun provideTmdbApiKey(): String {
+        return BuildConfig.TMDB_API_KEY
+    }
+
+    @Provides
+    @Singleton
     fun provideTmdbApiService(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory,
@@ -63,28 +72,6 @@ object MovieModule {
             .create(TmdbApiService::class.java)
     }
 
-    @Provides
-    @Singleton
-    @TmdbApiKey
-    fun provideTmdbApiKey(
-        @ApplicationContext context: Context,
-    ): String {
-        // Try to read from local.properties first, fallback to placeholder
-        // In a real app, this should be handled via BuildConfig
-        return try {
-            val properties = java.util.Properties()
-            val projectRoot = context.filesDir.parentFile?.parentFile
-            val localPropertiesFile = java.io.File(projectRoot, "local.properties")
-            if (localPropertiesFile.exists()) {
-                properties.load(java.io.FileInputStream(localPropertiesFile))
-                properties.getProperty("tmdb.api.key", API_KEY_PLACEHOLDER)
-            } else {
-                API_KEY_PLACEHOLDER
-            }
-        } catch (e: Exception) {
-            API_KEY_PLACEHOLDER
-        }
-    }
 
     @Provides
     @Singleton
@@ -107,4 +94,3 @@ object MovieModule {
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class TmdbApiKey
-

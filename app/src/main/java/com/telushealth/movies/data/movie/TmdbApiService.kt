@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface TmdbApiService {
     /**
-     * Discover movies with a specific person (Benedict Cumberbatch has person ID 71580)
+     * Discover movies with a specific person (person ID 71580)
      * Documentation: https://developers.themoviedb.org/3/discover/movie-discover
      */
     @GET("discover/movie")

@@ -4,7 +4,7 @@
 
 This is a mobile application that displays movies starring Benedict Cumberbatch using the TMDB (The Movie Database) API. The app demonstrates a hybrid Android architecture using both XML layouts and Jetpack Compose, following MVVM (Model-View-ViewModel) architecture pattern.
 
-This project was created as part of the TELUS Health Virtual Care Mobile Engineering Challenge.
+This project was created as part of the Mobile Engineering Challenge.
 
 ## Features
 
